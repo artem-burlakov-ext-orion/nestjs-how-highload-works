@@ -14,7 +14,4 @@ export class ModelService {
   async createModel(createModelDto: CreateModelDto): Promise<Model> {
     return this.modelRepository.createModel(createModelDto);
   }
-  
-    
 }
-

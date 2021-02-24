@@ -7,4 +7,5 @@ export const typeOrmConfig: TypeOrmModuleOptions = {
   username: 'postgres',
   password: '123456',
   database: 'hhw',
+  autoLoadEntities: true,
 }
