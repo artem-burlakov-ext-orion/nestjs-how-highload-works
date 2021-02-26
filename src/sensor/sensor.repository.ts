@@ -4,12 +4,12 @@ import { CreateSensorDto } from './dto/create-sensor.dto';
 import { v4 as uuid} from 'uuid';
 import { GetSensorsFilterDto } from './dto/get-sensors-filter.dto';
 
-const makeSensor = (modelId: number): Object => ({
+const makeSensor = (modelId: number): Record<string, any> => ({
     model_id: modelId,
     sn: uuid(),
   });
 
-const makeSensors = (modelId: number, count: number): Object[] => {
+const makeSensors = (modelId: number, count: number): Record<string, any>[] => {
   let rows = [];
   while (rows.length !== count) {
     console.log(rows.length)

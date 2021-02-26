@@ -6,22 +6,22 @@ import { CreateFirmwareDto } from './dto/create-firmware.dto';
 export class FirmwareRepository extends Repository<Firmware> {
   async createFirmware(createFirmwareDto: CreateFirmwareDto): Promise<Firmware> {
     const {
-      model_id,
+      modelId,
       ver,
-      main_server,
-      alter_server,
-      data_route,
-      update_route,
-      is_actual,
+      mainServer,
+      alterServer,
+      dataRoute,
+      updateRoute,
+      isActual,
      } = createFirmwareDto;
     const firmware = new Firmware();
-    firmware.model_id = model_id;
+    firmware.model_id = modelId;
     firmware.ver = ver;
-    firmware.main_server = main_server;
-    firmware.alter_server = alter_server;
-    firmware.data_route = data_route;
-    firmware.update_route = update_route;
-    firmware.is_actual = is_actual;
+    firmware.main_server = mainServer;
+    firmware.alter_server = alterServer;
+    firmware.data_route = dataRoute;
+    firmware.update_route = updateRoute;
+    firmware.is_actual = isActual;
     await firmware.save();
     return firmware;
   }
