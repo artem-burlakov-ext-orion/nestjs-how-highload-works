@@ -15,6 +15,6 @@ export class Sensor extends BaseEntity {
   @Column({ default: 1 })
   model_id: number
   
-  @Column({ type: 'enum', enum: SensorStatus, default: SensorStatus.STORED})
+  @Column({ default: SensorStatus.STORED })
   status: SensorStatus;
 }

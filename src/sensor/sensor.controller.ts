@@ -1,10 +1,16 @@
-import { Controller, Post, Body } from '@nestjs/common';
+import { Controller, Post, Body, Get, Query } from '@nestjs/common';
 import { SensorService } from './sensor.service';
 import { CreateSensorDto } from './dto/create-sensor.dto';
+import { Sensor } from './sensor.entity';
 
 @Controller('sensor')
 export class SensorController {
   constructor(private sensorService: SensorService) {}
+
+  @Get()
+  getSensors(@Query() filterDto: GetSensorsFilterDto): Promise<Sensor> {
+    return this.sensorService.getSensors(filterDto);
+  }
 
   @Post()
   createMassSensor(@Body() createSensorDto: CreateSensorDto): Promise<Number> {

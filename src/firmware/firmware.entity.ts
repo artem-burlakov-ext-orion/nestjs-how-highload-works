@@ -6,6 +6,9 @@ export class Firmware extends BaseEntity {
   @PrimaryGeneratedColumn()
   id: number;
 
+  @Column({ nullable: true })
+  model_id: number;
+
   @ManyToOne(type => Model, model => model.firmwares)
   @JoinColumn({ name: 'model_id'})
   model: Model;
