@@ -1,5 +1,3 @@
-// import { Column } from "typeorm";
-
 import { BaseEntity, Entity, Column, PrimaryGeneratedColumn, Unique } from "typeorm";
 import { SensorStatus } from "./sensor-status.enum";
 
@@ -9,12 +7,12 @@ export class Sensor extends BaseEntity {
   @PrimaryGeneratedColumn()
   id: number;
 
-  @Column('varchar')
+  @Column('varchar', { length: 64 })
   sn: string;
 
-  @Column('int4', { default: 1 })
-  model_id: number
+  @Column('int4')
+  model_id: number;
   
-  @Column({ default: SensorStatus.STORED })
+  @Column({ type: 'enum', enum: SensorStatus, default: SensorStatus.STORED })
   status: SensorStatus;
 }

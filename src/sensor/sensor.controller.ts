@@ -1,8 +1,10 @@
-import { Controller, Post, Body, Param, Get, Query, ParseIntPipe } from '@nestjs/common';
+import { Controller, Post, Body, Param, Get, Patch, Query, ParseIntPipe, UsePipes } from '@nestjs/common';
 import { SensorService } from './sensor.service';
 import { CreateSensorDto } from './dto/create-sensor.dto';
 import { Sensor } from './sensor.entity';
 import { GetSensorsFilterDto } from './dto/get-sensors-filter.dto';
+import { CreateSensorValidationPipe } from './pipes/create-sensor-validation.pipe';
+import { SensorStatus } from './sensor-status.enum';
 
 @Controller('sensor')
 export class SensorController {
@@ -19,7 +21,17 @@ export class SensorController {
   }
 
   @Post()
-  createMassSensor(@Body() createSensorDto: CreateSensorDto): Promise<number> {
+  @UsePipes(CreateSensorValidationPipe)
+  createMassSensor(@Body() createSensorDto: CreateSensorDto): Promise<Number> {
     return this.sensorService.createMassSensor(createSensorDto);
   }
+
+  @Patch('/:id/status')
+  updateSensorStatus(
+    @Param('id', ParseIntPipe) id: number,
+    @Body('status') status: SensorStatus,
+  ): Promise<Sensor> {
+    return this.sensorService.updateSensorStatus(id, status);
+  }
+
 }

@@ -4,6 +4,7 @@ import { InjectRepository } from '@nestjs/typeorm';
 import { CreateSensorDto } from './dto/create-sensor.dto';
 import { GetSensorsFilterDto } from './dto/get-sensors-filter.dto';
 import { Sensor } from './sensor.entity';
+import { SensorStatus } from './sensor-status.enum';
 
 @Injectable()
 export class SensorService {
@@ -27,5 +28,13 @@ export class SensorService {
     async createMassSensor(createSensorDto: CreateSensorDto): Promise<number> {
       const createdCount = await this.sensorRepository.createMassSensor(createSensorDto);
       return createdCount;
+    }
+
+    async updateSensorStatus(id: number, status: SensorStatus): Promise<Sensor> {
+      const sensor = await this.getSensorById(id);
+      sensor.status = status;
+      await sensor.save();
+      return sensor;
+      
     }
 }

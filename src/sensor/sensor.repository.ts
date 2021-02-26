@@ -3,18 +3,18 @@ import { Sensor } from './sensor.entity';
 import { CreateSensorDto } from './dto/create-sensor.dto';
 import { v4 as uuid} from 'uuid';
 import { GetSensorsFilterDto } from './dto/get-sensors-filter.dto';
+import { SensorStatus } from './sensor-status.enum';
 
-const makeSensor = (modelId: number): Record<string, any> => ({
-    model_id: modelId,
-    sn: uuid(),
-  });
+const makeSensor = (modelId: number, status: SensorStatus = SensorStatus.STORED): Record<string, any> => ({
+  // const sensor = new Sensor();  default values from entity dont work??
+  model_id: modelId,
+  sn: uuid(),
+  status,
+});
 
 const makeSensors = (modelId: number, count: number): Record<string, any>[] => {
   let rows = [];
   while (rows.length !== count) {
-    console.log(rows.length)
-    console.log(count)
-    console.log('-------------------');
     rows = [...rows, makeSensor(modelId)];
   }
   return rows;
@@ -44,8 +44,5 @@ export class SensorRepository extends Repository<Sensor> {
     .values(rows);
     const sensors = await query.execute()
     return sensors.identifiers.length;
-
   }
-
-
 }
