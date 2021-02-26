@@ -1,7 +1,9 @@
 export class CreateFirmwareDto {
-  version: string;
+  ver: string;
+  model_id: number;
   main_server: string;
   alter_server: string;
-  push_route: string;
+  data_route: string;
+  update_route: string;
   is_actual: boolean;
 };

@@ -1,5 +1,6 @@
-import { Entity, BaseEntity, PrimaryGeneratedColumn, Column } from "typeorm";
+import { Entity, BaseEntity, PrimaryGeneratedColumn, Column, OneToMany } from "typeorm";
 import { ModelMeasurand } from './model-measurand.enum';
+import { Firmware } from '../firmware/firmware.entity';
 
 @Entity()
 export class Model extends BaseEntity {
@@ -20,4 +21,7 @@ export class Model extends BaseEntity {
 
   @Column()
   warranty: number;
+
+  @OneToMany(type => Firmware, firmware => firmware.model)
+  firmwares: Firmware[];
 }
