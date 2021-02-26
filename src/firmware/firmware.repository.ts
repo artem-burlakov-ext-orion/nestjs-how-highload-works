@@ -16,7 +16,7 @@ export class FirmwareRepository extends Repository<Firmware> {
      } = createFirmwareDto;
     const firmware = new Firmware();
 
-    firmware.model = 
+    firmware.model = model_id;
     firmware.ver = ver;
     firmware.main_server = main_server;
     firmware.alter_server = alter_server;
