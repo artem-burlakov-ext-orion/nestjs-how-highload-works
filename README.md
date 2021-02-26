@@ -2,11 +2,14 @@
 
 to anyone who want to know how high volume applications work (and i want to know too)
 
-## Emulator for 
+## Emulator for real world cases in which a huge amount of data is generated and requires analysis
 - collecting streaming data from temperature sensors <<<----- i am here
+- search for missing people 
 - fraud detection
 - disaster heavy frost in Texas
 - smart home order goods online and delivery by drones
+- the price of bitcoin has collapsed 
+- social network (10M)
 
 ### ToDo
 

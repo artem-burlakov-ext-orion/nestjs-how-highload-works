@@ -19,6 +19,7 @@ const makeSensors = (modelId, count): Object[] => {
 
 @EntityRepository(Sensor)
 export class SensorRepository extends Repository<Sensor> {
+
   async getSensors(filterDto: GetSensorsFilterDto): Promise<Sensor[]> {
     const { model_id, status } = filterDto;
     const query = this.createQueryBuilder('sensor');

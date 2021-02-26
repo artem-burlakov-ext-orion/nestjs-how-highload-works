@@ -9,25 +9,25 @@ export class Firmware extends BaseEntity {
   @Column({ nullable: true })
   model_id: number;
 
-  @ManyToOne(type => Model, model => model.firmwares)
+  @ManyToOne(type => Model)
   @JoinColumn({ name: 'model_id'})
   model: Model;
 
-  @Column('string', { length: 64 })
+  @Column('varchar', { length: 64 })
   ver: string;
 
-  @Column('string', { length: 64 })
+  @Column('varchar', { length: 64 })
   main_server: string;
 
-  @Column('string', { length: 64 })
+  @Column('varchar', { length: 64 })
   alter_server: string;
 
-  @Column('string', { length: 32 })
+  @Column('varchar', { length: 32 })
   data_route: string;
 
-  @Column('string', { length: 32 })
+  @Column('varchar', { length: 32 })
   update_route: string;
 
-  @Column()
+  @Column('boolean')
   is_actual: boolean;
 }

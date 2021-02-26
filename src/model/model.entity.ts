@@ -21,7 +21,4 @@ export class Model extends BaseEntity {
 
   @Column()
   warranty: number;
-
-  @OneToMany(type => Firmware, firmware => firmware.model)
-  firmwares: Firmware[];
 }

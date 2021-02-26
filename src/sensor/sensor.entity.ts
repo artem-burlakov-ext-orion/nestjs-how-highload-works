@@ -9,10 +9,10 @@ export class Sensor extends BaseEntity {
   @PrimaryGeneratedColumn()
   id: number;
 
-  @Column()
+  @Column('varchar')
   sn: string;
 
-  @Column({ default: 1 })
+  @Column('int4', { default: 1 })
   model_id: number
   
   @Column({ default: SensorStatus.STORED })
