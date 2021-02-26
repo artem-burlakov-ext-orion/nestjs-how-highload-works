@@ -2,6 +2,7 @@ import { EntityRepository, Repository } from "typeorm";
 import { Sensor } from './sensor.entity';
 import { CreateSensorDto } from './dto/create-sensor.dto';
 import { v4 as uuid} from 'uuid';
+import { GetSensorsFilterDto } from './dto/get-sensors-filter.dto';
 
 const makeSensor = (modelId: number): Object => ({
     model_id: modelId,
@@ -18,6 +19,19 @@ const makeSensors = (modelId, count): Object[] => {
 
 @EntityRepository(Sensor)
 export class SensorRepository extends Repository<Sensor> {
+  async getSensors(filterDto: GetSensorsFilterDto): Promise<Sensor[]> {
+    const { model_id, status } = filterDto;
+    const query = this.createQueryBuilder('sensor');
+    if (model_id) {
+      query.andWhere('sensor.model_id = :model_id', { model_id });
+    }
+    if (status) {
+      query.andWhere('sensor.status = :status', { status });
+    }
+    const sensors = await query.getMany();
+    return sensors;
+  }
+
   async createMassSensor(createSensorDto: CreateSensorDto): Promise<number> {
     const { model_id, count } = createSensorDto;
     const rows = makeSensors(model_id, count);

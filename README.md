@@ -6,7 +6,7 @@ to anyone who want to know how high volume applications work (and i want to know
 - collecting streaming data from temperature sensors <<<----- i am here
 - fraud detection
 - disaster heavy frost in Texas
-- smart fridge order milk online 
+- smart home order goods online and delivery by drones
 
 ### ToDo
 
@@ -31,9 +31,9 @@ second
 - add message to engineer if sensor dont work
 - alter_server change port
 - alter_server is replica on virtual machine
-- get data from sensor route and create models/sensors/firmwares routes must be on different servers
+- get data from sensor route and creating models/sensors/firmwares routes must be on different servers
 - replace express to fastify
-- gte 1M sensors generate data
+- gte 100k sensors generate data
 
 somewhen
 - transform to course with exercises (high volume projects)

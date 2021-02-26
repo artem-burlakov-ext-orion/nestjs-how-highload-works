@@ -8,7 +8,4 @@ export class GetSensorsFilterDto {
   @IsOptional()
   @IsIn([SensorStatus.STORED, SensorStatus.INSTALLED, SensorStatus.ACTIVE, SensorStatus.INVALID])
   status: SensorStatus;
-
-
-
 }
