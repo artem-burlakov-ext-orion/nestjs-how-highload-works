@@ -23,6 +23,7 @@ second
 - alter_server change port
 - alter_server is replica on virtual machine
 - get data from sensor route and create models/sensors/firmwares routes must be on different servers
+- replace express to fastify
 - gte 1M sensors generate data
 
 
