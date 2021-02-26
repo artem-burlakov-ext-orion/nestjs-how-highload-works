@@ -1,8 +1,10 @@
 # Educational project "high volume architect’s desk"
 
-for whom: to anyone who want to know how high volume applications work
+to anyone who want to know how high volume applications work
 
-##ToDo
+## emulator for collecting streaming data from iot sensors
+
+### ToDo
 
 first
 - move to nestjs
@@ -11,11 +13,6 @@ first
 - add relations
 
 second
-- add codequality
-- add tests
-- add github actions
-- add badges to readme
-- add descriptiton to readme
 - add firmware update
 - add security (crypt passwords for every sensor?)
 - add realtime analytics (streaming layer redis, tarantool)
