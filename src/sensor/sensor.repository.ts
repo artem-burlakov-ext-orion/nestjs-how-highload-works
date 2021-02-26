@@ -9,10 +9,13 @@ const makeSensor = (modelId: number): Object => ({
     sn: uuid(),
   });
 
-const makeSensors = (modelId, count): Object[] => {
+const makeSensors = (modelId: number, count: number): Object[] => {
   let rows = [];
   while (rows.length !== count) {
-    rows.push(makeSensor(modelId));
+    console.log(rows.length)
+    console.log(count)
+    console.log('-------------------');
+    rows = [...rows, makeSensor(modelId)];
   }
   return rows;
 };

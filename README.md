@@ -1,3 +1,7 @@
+### Tests, code quality and linter status:
+
+[![Maintainability](https://api.codeclimate.com/v1/badges/c1cbaf9f97ca597f3c18/maintainability)](https://codeclimate.com/github/eifory/nestjs-how-highload-works/maintainability)
+
 # Educational project "high volume architect’s desk"
 
 to anyone who want to know how high volume applications work (and i want to know too)
@@ -23,6 +27,7 @@ second
 - add easy level (each block is part of the project)
 - add web page where student can select block and drag it onto blocks pane
 - add firmware update
+- firmware data to jsonb in db
 - add security (crypt passwords for every sensor?)
 - add realtime analytics (streaming layer redis, tarantool)
 - filter invalid data by streaming layer (temperature without serial number?)

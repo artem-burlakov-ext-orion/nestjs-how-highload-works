@@ -28,6 +28,6 @@ export class Firmware extends BaseEntity {
   @Column('varchar', { length: 32 })
   update_route: string;
 
-  @Column('boolean')
+  @Column('boolean', { default: true })
   is_actual: boolean;
 }

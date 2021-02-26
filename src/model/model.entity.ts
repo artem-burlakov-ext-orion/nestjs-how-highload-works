@@ -1,6 +1,5 @@
-import { Entity, BaseEntity, PrimaryGeneratedColumn, Column, OneToMany } from "typeorm";
+import { Entity, BaseEntity, PrimaryGeneratedColumn, Column } from "typeorm";
 import { ModelMeasurand } from './model-measurand.enum';
-import { Firmware } from '../firmware/firmware.entity';
 
 @Entity()
 export class Model extends BaseEntity {
