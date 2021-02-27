@@ -22,7 +22,7 @@ export class SensorController {
 
   @Post()
   @UsePipes(CreateSensorValidationPipe)
-  createMassSensor(@Body() createSensorDto: CreateSensorDto): Promise<Number> {
+  createMassSensor(@Body() createSensorDto: CreateSensorDto): Promise<number> {
     return this.sensorService.createMassSensor(createSensorDto);
   }
 

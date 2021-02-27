@@ -7,7 +7,7 @@
 to anyone who want to know how high volume applications work (and i want to know too)
 
 ## Emulator for real world cases in which a huge amount of data is generated and requires analysis
-- collecting streaming data from temperature sensors <<<----- i am here
+- collecting streaming data from IOT sensors <<<----- i am here
 - search for missing people 
 - fraud detection
 - disaster heavy frost in Texas
@@ -24,8 +24,8 @@ first
 - add relations
 
 second
-- add easy level (each block is part of the project)
-- add web page where student can select block and drag it onto blocks pane
+- add easy level (each visual block is part of the architecture)
+- add web page where student can select block and drag it onto blocks pane to configure data pipeline
 - add firmware update
 - firmware data to jsonb in db
 - add security (crypt passwords for every sensor?)

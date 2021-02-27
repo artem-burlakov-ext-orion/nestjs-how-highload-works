@@ -5,17 +5,20 @@ import { v4 as uuid} from 'uuid';
 import { GetSensorsFilterDto } from './dto/get-sensors-filter.dto';
 import { SensorStatus } from './sensor-status.enum';
 
-const makeSensor = (modelId: number, status: SensorStatus = SensorStatus.STORED): Record<string, any> => ({
+const makeSensor = (modelId: number, status: SensorStatus): Sensor => {
   // const sensor = new Sensor();  default values from entity dont work??
-  model_id: modelId,
-  sn: uuid(),
-  status,
-});
+  const sensor = new Sensor();
+  sensor.model_id = modelId;
+  sensor.sn = uuid();
+  sensor.status = status;
+  return sensor;
+};
 
-const makeSensors = (modelId: number, count: number): Record<string, any>[] => {
-  let rows = [];
+const makeSensors = (createSensorDto: CreateSensorDto): Sensor[] => {
+  const { count, modelId, status } = createSensorDto;
+  let rows: Sensor[] = [];
   while (rows.length !== count) {
-    rows = [...rows, makeSensor(modelId)];
+    rows = [...rows, makeSensor(modelId, status)];
   }
   return rows;
 };
@@ -37,8 +40,7 @@ export class SensorRepository extends Repository<Sensor> {
   }
 
   async createMassSensor(createSensorDto: CreateSensorDto): Promise<number> {
-    const { model_id, count } = createSensorDto;
-    const rows = makeSensors(model_id, count);
+    const rows = makeSensors(createSensorDto);
     const query = this.createQueryBuilder('sensor')
     .insert()
     .values(rows);
