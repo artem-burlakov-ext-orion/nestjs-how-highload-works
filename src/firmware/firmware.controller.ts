@@ -8,7 +8,7 @@ export class FirmwareController {
   constructor(private firmwareService: FirmwareService) {}
 
   @Post()
-  async createFirmware(@Body() createFirmwareDto: CreateFirmwareDto): Promise<Firmware> {
+  createFirmware(@Body() createFirmwareDto: CreateFirmwareDto): Promise<Firmware> {
     return this.firmwareService.createFirmware(createFirmwareDto);
   }
 }

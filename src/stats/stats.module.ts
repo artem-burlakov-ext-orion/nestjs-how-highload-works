@@ -11,4 +11,5 @@ import { StatsRepository } from './stats.repository';
   controllers: [StatsController],
   providers: [StatsService],
 })
+
 export class StatsModule {}
