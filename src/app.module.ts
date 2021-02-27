@@ -5,6 +5,7 @@ import { ModelModule } from './model/model.module';
 import { SensorModule } from './sensor/sensor.module';
 import { FirmwareModule } from './firmware/firmware.module';
 import { StatsModule } from './stats/stats.module';
+import { StartModule } from './start/start.module';
 
 @Module({
   imports: [
@@ -13,6 +14,7 @@ import { StatsModule } from './stats/stats.module';
     SensorModule,
     FirmwareModule,
     StatsModule,
+    StartModule,
   ],
 })
 export class AppModule {}
