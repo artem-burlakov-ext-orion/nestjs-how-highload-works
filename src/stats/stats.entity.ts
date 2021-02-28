@@ -1,7 +1,7 @@
 import { BaseEntity, Entity, Column, PrimaryGeneratedColumn } from "typeorm";
 
 @Entity()
-export class Stats extends BaseEntity {
+export class Sensor_stats extends BaseEntity {
   @PrimaryGeneratedColumn()
   id: number
 

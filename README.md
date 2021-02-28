@@ -30,13 +30,13 @@ second
 - firmware data to jsonb in db
 - add security (crypt passwords for every sensor?)
 - add realtime analytics (streaming layer redis, tarantool)
-- filter invalid data by streaming layer (temperature without serial number?)
-- add full analytics(batch layer clickhouse, vertica)
+- filter invalid data by streaming layer (sensor value without serial number?)
+- add full analytics(batch layer clickhouse?)
 - realtime analytics "why sensor not active"
 - alarm realtime if accident (nearest sensors differs from norm temp more then 10C)
 - add invalid firmware update --> alarm realtime if invalid firmware
 - add engineers (telegram bots?)
-- add message to engineer if sensor dont work
+- alarm --> add message to engineer
 - alter_server change port
 - alter_server is replica on virtual machine
 - get data from sensor route and creating models/sensors/firmwares routes must be on different servers

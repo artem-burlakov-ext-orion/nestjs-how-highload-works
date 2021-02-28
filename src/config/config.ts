@@ -3,6 +3,9 @@ import * as dotenv from 'dotenv';
 
 dotenv.config();
 
+export const checkInstalledInterval = process.env.INTERVAL_CHECK_INSTALLED_SENSORS;
+export const sendDataInterval = process.env.INTERVAL_SENSOR_SEND_DATA;
+
 export const typeOrmConfig: TypeOrmModuleOptions = {
   type: 'postgres',
   host: process.env.DB_HOST,

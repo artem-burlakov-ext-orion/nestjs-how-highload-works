@@ -7,13 +7,17 @@ import { Sensor } from './sensor.entity';
 import { SensorStatus } from './sensor-status.enum';
 import { InsertResult } from 'typeorm';
 import { SensorVirtualizer } from './sensor-virtualizer';
+import { Interval, SchedulerRegistry, Timeout } from '@nestjs/schedule';
+import { checkInstalledInterval, sendDataInterval } from '../config/config';
+
 
 @Injectable()
 export class SensorService {
   constructor(
     @InjectRepository(SensorRepository)
     private sensorRepository: SensorRepository,
-    private sensorVirtualizer: SensorVirtualizer
+    private sensorVirtualizer: SensorVirtualizer,
+    private schedulerRegistry: SchedulerRegistry,
   ) {}
 
     async getSensorById(id: number): Promise<Sensor> {
@@ -41,14 +45,12 @@ export class SensorService {
       return sensor;
     }
 
+    @Timeout(Number(checkInstalledInterval))
     async virtualizeSensors() {
       const installed = await this.getSensors({ status: SensorStatus.INSTALLED });
       installed.forEach((sensor) => {
-        // create dynamic interval here to send data
+        const interval = setInterval(() => this.sensorVirtualizer.sendData(sensor), Number(sendDataInterval));
+        this.schedulerRegistry.addInterval(`sensor_${sensor.id}`, interval);
       })
-  
     }
-  
-
-
 }
