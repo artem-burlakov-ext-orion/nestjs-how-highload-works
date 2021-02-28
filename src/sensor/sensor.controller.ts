@@ -5,6 +5,7 @@ import { Sensor } from './sensor.entity';
 import { GetSensorsFilterDto } from './dto/get-sensors-filter.dto';
 import { CreateSensorValidationPipe } from './pipes/create-sensor-validation.pipe';
 import { SensorStatus } from './sensor-status.enum';
+import { InsertResult } from 'typeorm';
 
 @Controller('sensor')
 export class SensorController {
@@ -22,7 +23,7 @@ export class SensorController {
 
   @Post()
   @UsePipes(CreateSensorValidationPipe)
-  createMassSensor(@Body() createSensorDto: CreateSensorDto): Promise<number> {
+  createMassSensor(@Body() createSensorDto: CreateSensorDto): Promise<InsertResult> {
     return this.sensorService.createMassSensor(createSensorDto);
   }
 

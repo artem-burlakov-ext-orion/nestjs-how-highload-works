@@ -5,12 +5,16 @@ import { CreateSensorDto } from './dto/create-sensor.dto';
 import { GetSensorsFilterDto } from './dto/get-sensors-filter.dto';
 import { Sensor } from './sensor.entity';
 import { SensorStatus } from './sensor-status.enum';
+import { InsertResult } from 'typeorm';
+import { SensorVirtualizer } from './sensor-virtualizer';
 
 @Injectable()
 export class SensorService {
   constructor(
     @InjectRepository(SensorRepository)
-    private sensorRepository: SensorRepository) {}
+    private sensorRepository: SensorRepository,
+    private sensorVirtualizer: SensorVirtualizer
+  ) {}
 
     async getSensorById(id: number): Promise<Sensor> {
       const sensor = await this.sensorRepository.findOne(id);
@@ -25,9 +29,9 @@ export class SensorService {
       return sensors;
     }
 
-    async createMassSensor(createSensorDto: CreateSensorDto): Promise<number> {
-      const createdCount = await this.sensorRepository.createMassSensor(createSensorDto);
-      return createdCount;
+    async createMassSensor(createSensorDto: CreateSensorDto): Promise<InsertResult> {
+      const inserted = await this.sensorRepository.createMassSensor(createSensorDto);
+      return inserted;
     }
 
     async updateSensorStatus(id: number, status: SensorStatus): Promise<Sensor> {
@@ -35,6 +39,16 @@ export class SensorService {
       sensor.status = status;
       await sensor.save();
       return sensor;
-      
     }
+
+    async virtualizeSensors() {
+      const installed = await this.getSensors({ status: SensorStatus.INSTALLED });
+      installed.forEach((sensor) => {
+        // create dynamic interval here to send data
+      })
+  
+    }
+  
+
+
 }

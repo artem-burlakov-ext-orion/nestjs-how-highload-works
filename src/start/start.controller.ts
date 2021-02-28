@@ -1,13 +1,12 @@
 import { Controller, Get } from '@nestjs/common';
+import { StartService } from './start.service';
 
 @Controller('start')
 export class StartController {
-  constructor(private startService: StartService) {}
+  // constructor(private startService: StartService) {}
 
-    @Get()
-    start() {
-      return this.startService.start();
-    }
-
-  
+  //   @Get()
+  //   makeSensorsAndStartGeneratingData() {
+  //     return this.startService.makeSensorsAndStartGeneratingData();
+  //   }
 }

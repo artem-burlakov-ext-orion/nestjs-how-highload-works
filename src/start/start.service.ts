@@ -1,21 +1,16 @@
-import { Injectable } from '@nestjs/common';
-import { MetadataAlreadyExistsError } from 'typeorm';
+import { Injectable, HttpService } from '@nestjs/common';
+import { defaultOptions, IDefaultOptions } from './default/default-options';
 
 @Injectable()
 export class StartService {
-  private url: string = 'http://localhost:3000/sensor';
-  private startOptions = {
-    modelId: 1,
-    status: 'installed',
-    count: 1000,
-  };
-  
-  async start() {
-    axios.post(this.url, this.startOptions)
-      .then(() => axios.get('http://localhost/3000/sensor', {
-        status: 'installed',
-      }))
-      .then((installed) => installed.forEach((s) => {
+  constructor(
+    private httpService: HttpService,
+    private options: IDefaultOptions = defaultOptions
+  ) {}
+    
+  async makeSensorsAndStartGeneratingData() {
+    const { data } = await this.httpService.post(this.options.url, this.options.create).toPromise();
+    data.identifiers.map((id) => id.id)
         
       }))
   }

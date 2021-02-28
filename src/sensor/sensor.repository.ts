@@ -1,4 +1,4 @@
-import { EntityRepository, Repository } from "typeorm";
+import { EntityRepository, Repository, InsertResult } from "typeorm";
 import { Sensor } from './sensor.entity';
 import { CreateSensorDto } from './dto/create-sensor.dto';
 import { v4 as uuid} from 'uuid';
@@ -25,13 +25,12 @@ const makeSensors = (createSensorDto: CreateSensorDto): Sensor[] => {
 
 @EntityRepository(Sensor)
 export class SensorRepository extends Repository<Sensor> {
-
   async getSensors(filterDto: GetSensorsFilterDto): Promise<Sensor[]> {
-    const { model_id, status } = filterDto;
+    const { status } = filterDto;
     const query = this.createQueryBuilder('sensor');
-    if (model_id) {
-      query.andWhere('sensor.model_id = :model_id', { model_id });
-    }
+    // if (model_id) {
+    //   query.andWhere('sensor.model_id = :model_id', { model_id });
+    // }
     if (status) {
       query.andWhere('sensor.status = :status', { status });
     }
@@ -39,12 +38,14 @@ export class SensorRepository extends Repository<Sensor> {
     return sensors;
   }
 
-  async createMassSensor(createSensorDto: CreateSensorDto): Promise<number> {
+  async createMassSensor(createSensorDto: CreateSensorDto): Promise<InsertResult> {
     const rows = makeSensors(createSensorDto);
     const query = this.createQueryBuilder('sensor')
     .insert()
     .values(rows);
     const sensors = await query.execute()
-    return sensors.identifiers.length;
+    // identifiers: [ { id: 29 }, { id: 30 }, { id: 31 } ],
+    return sensors;
   }
+ 
 }
