@@ -2,7 +2,7 @@
   "name": "nestjs-how-highload-works",
   "version": "0.0.1",
   "description": "",
-  "author": "",
+  "author": "Artem Burlakov",
   "private": true,
   "license": "UNLICENSED",
   "scripts": {
