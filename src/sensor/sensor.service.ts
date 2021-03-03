@@ -9,6 +9,8 @@ import { InsertResult } from 'typeorm';
 import { SensorVirtualizer } from './sensor-virtualizer';
 import { Interval, SchedulerRegistry, Timeout } from '@nestjs/schedule';
 import { checkInstalledInterval, sendDataInterval } from '../config/config';
+import { MockFactory } from 'mockingbird-ts';
+import { FakeAddress } from './sensor-fake-data';
 
 
 @Injectable()
@@ -45,11 +47,16 @@ export class SensorService {
       return sensor;
     }
 
-    @Timeout(Number(checkInstalledInterval))
+    @Timeout(Number(checkInstalledInterval))//replace to Interval
     async virtualizeSensors() {
       const installed = await this.getSensors({ status: SensorStatus.INSTALLED });
       installed.forEach((sensor) => {
-        const interval = setInterval(() => this.sensorVirtualizer.sendData(sensor), Number(sendDataInterval));
+        const { address } = MockFactory.create<FakeAddress>(FakeAddress);
+        const interval = setInterval(() => {
+          const data = this.sensorVirtualizer.genData(sensor);
+          data['addr'] = address;
+          this.sensorVirtualizer.sendData(data);
+        }, Number(sendDataInterval));
         this.schedulerRegistry.addInterval(`sensor_${sensor.id}`, interval);
       })
     }
