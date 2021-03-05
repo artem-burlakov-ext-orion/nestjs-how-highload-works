@@ -8,7 +8,7 @@ export class SensorVirtualizer {
 
   genData(sensor) {
     const { value } = MockFactory.create<FakeValue>(FakeValue);
-    const sn = sensor.sn;
+    const { sn } = sensor;
     return {
       sn,
       fw: '0.0.1', //will be relation
